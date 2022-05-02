@@ -7,7 +7,7 @@ const favouritesData = JSON.parse(localStorage.getItem("favourites"));
 // console.log(favouritesData);
 
 const tbody = document.getElementsByTagName("tbody")[0];
-favouritesData.forEach((el) => {
+favouritesData.forEach((el, index, arr) => {
   const row = document.createElement("tr");
 
   const matchNum = document.createElement("td");
@@ -30,8 +30,9 @@ favouritesData.forEach((el) => {
   btn.style.cursor = "pointer";
 
   btn.addEventListener("click", () => {
-    favouritesData.push(arr[index]);
+    favouritesData.splice(index, 1);
     localStorage.setItem("favourites", JSON.stringify(favouritesData));
+    window.location.reload();
   });
   row.append(matchNum, teamA, teamB, date, venue, btn);
   tbody.append(row);
